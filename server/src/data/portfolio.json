@@ -1,0 +1,75 @@
+{
+  "name": "Faustina Yarathingal",
+  "role": "Full-Stack Developer & Forensic Scientist",
+  "location": "India",
+  "github": "https://github.com/Frosty3316",
+  "summary": "She builds clean, functional web apps and has a background in forensic science, digital forensics, and crime scene examination.",
+  "projects": [
+    {
+      "name": "Personal Portfolio Website",
+      "type": "Frontend",
+      "description": "A responsive personal portfolio website showcasing my projects, skills, and background. Designed with a clean UI and smooth navigation to give recruiters a quick but complete overview of my work.",
+      "tech": ["HTML", "CSS", "JavaScript", "React"]
+    },
+    {
+      "name": "Landing Page",
+      "type": "Frontend",
+      "description": "A modern, responsive landing page built with a focus on layout, typography, and visual hierarchy. Optimized for both desktop and mobile viewing.",
+      "tech": ["HTML", "CSS", "JavaScript"]
+    },
+    {
+      "name": "To-Do App",
+      "type": "Frontend",
+      "description": "A functional to-do list application that allows users to add, delete, and manage tasks. Built to practice state management, user input handling, and clean UI logic.",
+      "tech": ["React", "TypeScript"]
+    },
+    {
+      "name": "Weather App",
+      "type": "Frontend",
+      "description": "A weather application that fetches real-time weather data from a public API and displays current conditions in a simple, user-friendly interface.",
+      "tech": ["React", "API Integration", "CSS"]
+    },
+    {
+      "name": "Mini Docs",
+      "type": "Full-Stack",
+      "description": "A real-time collaborative document editor supporting multiple users. Features include live cursors, presence indicators, theming, and real-time synchronization.",
+      "tech": ["React", "TypeScript", "Node.js", "WebSockets"]
+    },
+    {
+      "name": "AI Chatbot",
+      "type": "Full-Stack",
+      "description": "An AI chatbot designed to function as a portfolio-aware guide. The chatbot can handle file and image uploads while also understanding and explaining my projects, skills, and technical background. It features a polished chat UI, persistent conversation handling, and a custom backend that injects structured portfolio context into AI responses. Built with React + TypeScript using a modular AI layer designed for future OpenAI integration.",
+      "tech": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Node.js",
+        "Express"
+      ]
+    }
+  ],
+  "skills": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "React",
+    "Vite",
+    "TypeScript",
+    "Node.js",
+    "Express",
+    "AI/ML Basics",
+    "API Integration",
+    "UI/UX Design",
+    "Real-time Applications",
+    "Digital Forensics",
+    "Forensic Documentation & Analysis",
+    "Crime Scene Examination"
+  ],
+  "strengths": [
+    "Strong attention to detail",
+    "Clean and readable code",
+    "User-centric UI design",
+    "Ability to explain technical concepts clearly",
+    "Analytical mindset influenced by forensic studies"
+  ]
+}
