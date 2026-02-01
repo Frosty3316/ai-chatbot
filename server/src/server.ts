@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import chatRoute from "./routes/chat";
+import chatRoute from "./routes/chat.js";
 
 const app = express();
 
@@ -13,7 +13,7 @@ app.get("/", (_, res) => {
 
 app.use("/chat", chatRoute);
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () =>
   console.log(`Server running on http://localhost:${PORT}`)
 );
