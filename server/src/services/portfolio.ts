@@ -1,4 +1,4 @@
-import portfolio from "../data/portfolio.json";
+import portfolio from "../data/portfolio.json" assert { type: "json" };
 
 const FAUSTINA_PROFILE = `
 Faustina Yarathingal is a tech-focused forensic science student and developer.
