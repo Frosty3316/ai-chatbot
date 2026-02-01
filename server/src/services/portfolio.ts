@@ -1,4 +1,12 @@
-import portfolio from "../data/portfolio.json" assert { type: "json" };
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const portfolioPath = path.join(__dirname, "../data/portfolio.json");
+const portfolio = JSON.parse(fs.readFileSync(portfolioPath, "utf-8"));
 
 const FAUSTINA_PROFILE = `
 Faustina Yarathingal is a tech-focused forensic science student and developer.
