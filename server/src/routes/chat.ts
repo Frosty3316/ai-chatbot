@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { answerFromPortfolio } from "../services/portfolio";
+import { answerFromPortfolio } from "../services/portfolio.js";
 
 const router = Router();
 
