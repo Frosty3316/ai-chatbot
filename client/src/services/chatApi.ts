@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3001/chat";
+const API_URL = "https://ai-chatbot-opez.onrender.com/chat";
 
 export async function chatWithBackend(message: string): Promise<string> {
   const res = await fetch(API_URL, {
