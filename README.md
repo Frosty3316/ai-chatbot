@@ -1,7 +1,7 @@
 # AI Portfolio Chatbot 🤖  
 An interactive AI-powered portfolio chatbot designed as a conversational alternative to a traditional portfolio.
-
-The chatbot allows users to **chat**, **upload files**, and **share images** to explore Faustina Yarathingal’s skills, projects, background, and tech stack in real time.
+The chatbot integrates AI through an **intent-driven, knowledge-grounded response system** rather than a large language model.
+It allows users to **chat**, **upload files**, and **share images** to explore Faustina Yarathingal’s skills, projects, background, and tech stack in real time.
 
 🔗 Live Demo: https://frosty3316.github.io/ai-chatbot/  
 🔌 Server: https://ai-chatbot-opez.onrender.com
@@ -75,6 +75,7 @@ Uploads allow:
 - richer user interaction
 - contextual exploration of content
 - a more engaging portfolio experience
+Uploaded files and images are treated as **contextual input**, allowing the chatbot to adapt the conversation flow and acknowledge or incorporate user-provided content. This enables multi-modal interaction without introducing heavyweight AI dependencies.
 
 ### Why REST instead of WebSockets?
 The interaction model is request–response focused, making REST:
@@ -108,14 +109,36 @@ Rather than:
 
 ---
 
+## 🧪 Running Locally
+
+The project is fully deployed and can be used directly via the live demo.  
+Running locally is intended for developers or reviewers who want to inspect, debug, or extend the system.
+
+### Backend
+```bash
+cd server
+npm install
+npm run dev
+```
+
+### Frontend
+```bash
+cd client
+npm install
+npm run dev
+```
+
+---
+
 ## 🧪 Future Improvements
 
+The architecture is intentionally designed to be **LLM-ready**.
 - LLM-powered responses
 - Persistent chat history
 - User authentication
-- Better document understanding
-- Richer image analysis
+- Document and image understanding
 - Conversation memory
+This allows the system to evolve toward generative AI while preserving its current reliability.
 
 ---
 
