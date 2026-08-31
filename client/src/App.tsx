@@ -1,241 +1,188 @@
 import { useEffect, useRef, useState } from "react";
+import { ChatList } from "./components/ChatList";
+import { Composer } from "./components/Composer";
+import { EmptyState } from "./components/EmptyState";
+import { DownIcon, Mark } from "./components/Icons";
+import { MessageBubble } from "./components/MessageBubble";
+import { Sidebar } from "./components/Sidebar";
+import { useChat } from "./hooks/useChat";
+import type { ChatAttachment } from "./types";
 import "./App.css";
-import { chatWithBackend } from "./services/chatApi";
-
-type Message = {
-  role: "user" | "bot";
-  content: string;
-  time: string;
-  files?: { url: string; name: string; type: string }[];
-  reactions?: string[];
-};
-
-const SUGGESTIONS = [
-  "Who is Faustina?",
-  "What are her skills?",
-  "Show me her projects",
-  "What tech stack does she use?",
-];
 
 export default function App() {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [input, setInput] = useState("");
-  const [files, setFiles] = useState<File[]>([]);
-  const [isTyping, setIsTyping] = useState(false);
-  const [lightbox, setLightbox] = useState<string | null>(null);
-  const [showScrollBtn, setShowScrollBtn] = useState(false);
-
-  const endRef = useRef<HTMLDivElement | null>(null);
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const streamRef = useRef("");
+  const {
+    conversations,
+    activeId,
+    messages,
+    status,
+    connection,
+    error,
+    quota,
+    send,
+    stop,
+    createChat,
+    selectChat,
+    deleteChats,
+    renameChat,
+    pinChats,
+  } = useChat();
+  const [showJump, setShowJump] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const stickRef = useRef(true);
+  const last = messages[messages.length - 1];
+  const pending = status === "streaming" && last?.role === "assistant" && !last.content;
 
   useEffect(() => {
-  const script = document.createElement("script");
-  script.src = "https://js.puter.com/v2/";
-  script.defer = true;
-  document.body.appendChild(script);
-}, []);
+    const node = scrollerRef.current;
+    if (!node || !stickRef.current) return;
+    node.scrollTop = node.scrollHeight;
+  }, [messages, status]);
 
   useEffect(() => {
-    endRef.current?.scrollIntoView({ behavior: "auto" });
-  }, [messages.length]);
+    if (!menuOpen) return;
+    function onKey(event: KeyboardEvent) {
+      if (event.key === "Escape") setMenuOpen(false);
+    }
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
 
-  function handleScroll() {
-    const el = containerRef.current;
-    if (!el) return;
-    setShowScrollBtn(
-      el.scrollHeight - el.scrollTop - el.clientHeight > 80
-    );
+  function onScroll() {
+    const node = scrollerRef.current;
+    if (!node) return;
+    const gap = node.scrollHeight - node.scrollTop - node.clientHeight;
+    stickRef.current = gap < 80;
+    setShowJump(gap > 96);
   }
 
-  async function fakeStream(text: string, time: string) {
-  setIsTyping(true);
-  streamRef.current = "";
+  function ask(prompt: string, attachments?: ChatAttachment[]) {
+    stickRef.current = true;
+    setMenuOpen(false);
+    send(prompt, attachments);
+  }
 
-  let botIndex = -1;
-
-  // Safely append bot message and capture index
-  setMessages((prev) => {
-    botIndex = prev.length;
-    return [...prev, { role: "bot", content: "", time }];
-  });
-
-  const interval = setInterval(() => {
-    streamRef.current += text[streamRef.current.length];
-
-    setMessages((prev) =>
-      prev.map((m, i) =>
-        i === botIndex ? { ...m, content: streamRef.current } : m
-      )
-    );
-
-    if (streamRef.current.length >= text.length) {
-      clearInterval(interval);
-      setIsTyping(false);
-    }
-  }, 40);
-}
-
-  async function sendMessage(text?: string) {
-    const userText = text ?? input;
-    if (!userText.trim() && files.length === 0) return;
-
-    const time = new Date().toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-
-    const uploadedFiles = files.map((f) => ({
-      url: URL.createObjectURL(f),
-      name: f.name,
-      type: f.type,
-    }));
-
-    setMessages((p) => [
-      ...p,
-      {
-        role: "user",
-        content: userText,
-        time,
-        files: uploadedFiles.length ? uploadedFiles : undefined,
-      },
-    ]);
-
-    setInput("");
-    setFiles([]);
-
-    try {
-      const reply = await chatWithBackend(userText);
-      await fakeStream(reply, time);
-    } catch {
-      setMessages((p) => [
-        ...p,
-        {
-          role: "bot",
-          content: "⚠️ Server error. Is backend running?",
-          time,
-        },
-      ]);
-      setIsTyping(false);
-    }
+  function jumpToLatest() {
+    stickRef.current = true;
+    const node = scrollerRef.current;
+    if (node) node.scrollTo({ top: node.scrollHeight, behavior: "smooth" });
+    setShowJump(false);
   }
 
   return (
-    <div className="app dark">
-      <div className="chat-container">
-        <header className="chat-header">
-          <h2>🤖 AI Portfolio Chatbot</h2>
+    <div className="shell">
+      <Sidebar
+        connection={connection}
+        conversations={conversations}
+        activeId={activeId}
+        onAsk={ask}
+        onNew={createChat}
+        onSelect={selectChat}
+        onDelete={deleteChats}
+        onRename={renameChat}
+        onPin={pinChats}
+        remainingGeneral={quota.remaining}
+        generalLimit={quota.limit}
+      />
+
+      <main className="stage">
+        <header className="topbar">
+          <div className="topbar-brand">
+            <Mark size={20} />
+            <div>
+              <strong>Dossier</strong>
+              <span>Ask anything</span>
+            </div>
+          </div>
+          <div className="topbar-actions">
+            <button type="button" className="ghost menu-toggle" onClick={() => setMenuOpen((open) => !open)}>
+              Chats
+            </button>
+            <button type="button" className="ghost" onClick={createChat}>
+              New chat
+            </button>
+            <a className="ghost" href="https://github.com/Frosty3316" target="_blank" rel="noreferrer">
+              GitHub
+            </a>
+          </div>
         </header>
 
         <div
-          className="chat-messages"
-          ref={containerRef}
-          onScroll={handleScroll}
+          ref={scrollerRef}
+          className={`transcript ${messages.length === 0 ? "is-empty" : ""}`}
+          onScroll={onScroll}
           role="log"
           aria-live="polite"
+          aria-relevant="additions"
         >
-          {messages.map((m, i) => (
-            <div key={i} className={`bubble ${m.role}`}>
-              <div>{m.content}</div>
-
-              {m.files?.map((f, idx) =>
-                f.type.startsWith("image") ? (
-                  <img
-                    key={idx}
-                    src={f.url}
-                    className="chat-image"
-                    width={240}
-                    loading="lazy"
-                    decoding="async"
-                    alt={f.name}
-                    onClick={() => setLightbox(f.url)}
-                  />
-                ) : (
-                  <div key={idx} className="chat-file">
-                    📄 {f.name}
-                  </div>
-                )
-              )}
-
-              <span className="timestamp">{m.time}</span>
-            </div>
-          ))}
-
-          {isTyping && (
-            <div className="bubble bot typing">
-              <span className="dots">
-                <span />
-                <span />
-                <span />
-              </span>
+          {messages.length === 0 ? (
+            <EmptyState onAsk={ask} />
+          ) : (
+            <div className="thread">
+              {messages.map((message) => (
+                <MessageBubble
+                  key={message.id}
+                  message={message}
+                  pending={pending && message.id === last.id}
+                />
+              ))}
             </div>
           )}
-
-          <div ref={endRef} />
         </div>
 
-        {showScrollBtn && (
+        {showJump && (
+          <button type="button" className="jump" onClick={jumpToLatest} aria-label="Jump to latest">
+            <DownIcon />
+          </button>
+        )}
+
+        {error && status === "error" && (
+          <p className="banner" role="status">
+            {error}
+          </p>
+        )}
+
+        <Composer
+          status={status}
+          remainingGeneral={quota.remaining}
+          generalLimit={quota.limit}
+          onSend={ask}
+          onStop={stop}
+        />
+      </main>
+
+      {menuOpen && (
+        <>
           <button
-            className="scroll-down"
-            aria-label="Scroll to latest message"
-            onClick={() =>
-              endRef.current?.scrollIntoView({ behavior: "smooth" })
-            }
-          >
-            ⬇
-          </button>
-        )}
-
-        {messages.length === 0 && window.innerWidth > 768 && (
-          <div className="suggestions">
-            {SUGGESTIONS.map((s) => (
-              <button key={s} onClick={() => sendMessage(s)}>
-                {s}
-              </button>
-            ))}
-          </div>
-        )}
-
-        <div className="file-preview">
-          {files.map((f, i) => (
-            <div key={i}>
-              {f.type.startsWith("image") ? "🖼️" : "📄"} {f.name}
-            </div>
-          ))}
-        </div>
-
-        <div className="chat-input">
-          <label className="attach" aria-label="Attach file">
-            📎
-            <input
-              type="file"
-              hidden
-              multiple
-              onChange={(e) =>
-                setFiles([...files, ...(e.target.files ?? [])])
-              }
-            />
-          </label>
-
-          <input
-            value={input}
-            aria-label="Chat message input"
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask about Faustina…"
-            onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+            type="button"
+            className="mobile-chats-backdrop"
+            aria-label="Close chats"
+            onClick={() => setMenuOpen(false)}
           />
-
-          <button aria-label="Send message" onClick={() => sendMessage()}>
-            Send
-          </button>
-        </div>
-
-        {lightbox && (
-          <div className="lightbox" onClick={() => setLightbox(null)}>
-            <img src={lightbox} alt="Preview" />
+          <div className="mobile-chats" role="dialog" aria-label="Chats">
+            <div className="mobile-chats-head">
+              <strong>Chats</strong>
+              <button type="button" className="ghost" onClick={() => setMenuOpen(false)}>
+                Close
+              </button>
+            </div>
+            <button type="button" className="icon-btn send new-chat" onClick={() => { createChat(); setMenuOpen(false); }}>
+              New chat
+            </button>
+            <ChatList
+              conversations={conversations}
+              activeId={activeId}
+              onSelect={(id) => {
+                selectChat(id);
+                setMenuOpen(false);
+              }}
+              onDelete={deleteChats}
+              onRename={renameChat}
+              onPin={pinChats}
+            />
           </div>
-        )}
-      </div>
+        </>
+      )}
     </div>
   );
 }

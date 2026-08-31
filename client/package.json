@@ -5,11 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:full": "vercel dev",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ai-sdk/groq": "^4.0.35",
+    "ai": "^7.0.85",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },

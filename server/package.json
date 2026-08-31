@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx src/server.ts",
-    "build": "tsc",
+    "build": "tsc && node -e \"require('fs').cpSync('src/data','dist/data',{recursive:true})\"",
     "start": "node dist/server.js"
   },
   "dependencies": {

@@ -3,5 +3,10 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  base: "/ai-chatbot/",
+  base: process.env.VERCEL ? "/" : "/ai-chatbot/",
+  server: {
+    proxy: {
+      "/api": "http://localhost:3000",
+    },
+  },
 });
