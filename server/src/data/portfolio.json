@@ -3,10 +3,10 @@
   "shortName": "Faustina",
   "role": "Full-Stack Developer & Forensic Scientist",
   "location": "Mumbai, Maharashtra, India",
-  "email": "faustysalin@gmail.com",
+  "email": "frostyarathingal@gmail.com",
   "website": "https://frosty3316.github.io/portfolio-site",
   "github": "https://github.com/Frosty3316",
-  "summary": "Faustina Yarathingal is a full-stack developer and forensic-science student in Mumbai. She builds product UI, realtime systems, and AI-assisted tools, and brings a forensic habit of checking evidence before drawing conclusions. She is studying B.Sc. (Hons.) Data Science and AI at IIT Guwahati and completed a diploma in Forensic Science and Criminal Law at St. Xavier's College.",
+  "summary": "Faustina Yarathingal is a full-stack developer and forensic-science student in Mumbai. She designs, builds, and ships complete web and mobile applications — product UI, realtime systems, and AI-assisted tools — and brings a forensic habit of checking evidence before drawing conclusions. She is studying B.Sc. (Hons.) Data Science and AI at IIT Guwahati and completed a diploma in Forensic Science and Criminal Law at St. Xavier's College.",
   "education": [
     {
       "program": "B.Sc. (Hons.) Data Science and AI",
@@ -29,12 +29,14 @@
     {
       "title": "Content & Research Intern",
       "org": "CollegeTips.in",
-      "dates": "Jul–Aug 2024"
+      "dates": "Jul–Aug 2024",
+      "summary": "Content creation, research, analysis, and documentation; remote collaboration with cross-functional teams."
     },
     {
       "title": "Student Ambassador",
       "org": "Internshala",
-      "dates": "Jun–Jul 2024"
+      "dates": "Jun–Jul 2024",
+      "summary": "Promoted internships and career opportunities, and worked with student communities on outreach."
     }
   ],
   "interests": [
@@ -58,53 +60,56 @@
       "tech": ["React", "TypeScript", "Vite", "Vercel Functions", "AI SDK", "Groq"]
     },
     {
-      "name": "Mini Docs",
+      "name": "Inkroom",
       "type": "Full-Stack",
-      "url": "https://harmonious-klepon-777dcc.netlify.app",
-      "description": "A real-time collaborative editor. Multiple people can write in the same file at once, with live cursors, presence, typing indicators, theming, and multi-document support.",
-      "tech": ["React", "TypeScript", "Node.js", "Express", "Socket.IO", "WebSockets"]
+      "url": "https://inkroom-swart.vercel.app",
+      "description": "A shared writing room. Open a page, send the link, and someone can join live. Named pages, presence, find-in-page, and a light/dark theme over Socket.IO.",
+      "tech": ["React", "Vite", "TipTap", "Node.js", "Express", "Socket.IO"]
     },
     {
-      "name": "FocusFlow Landing",
+      "name": "FocusFlow",
       "type": "Frontend",
       "url": "https://frosty3316.github.io/focusflow-landing/",
       "description": "A product landing page with a working focus timer in the hero (25 / 15 / 5). Local-only persistence, typography-led layout, and a night-desk visual system.",
-      "tech": ["React", "TypeScript", "Vite"]
+      "tech": ["React", "TypeScript", "Vite", "Vitest"]
     },
     {
       "name": "TaskNest",
       "type": "Frontend",
       "url": "https://tasknest-wheat.vercel.app",
       "description": "A local-first daily planner. Today is the default view; inbox is capture, upcoming is dated work, archive is done. Built as a product, not a generic todo CRUD list.",
-      "tech": ["React", "TypeScript"]
+      "tech": ["React", "TypeScript", "Vite", "Vitest"]
     },
     {
       "name": "Atmo",
       "type": "Full-Stack",
       "url": "https://atmo-pink.vercel.app",
       "description": "A weather product with a server-only BFF so the browser never talks to the weather provider. City search, geolocation, °C/°F, hourly and 7-day outlook, and an atmosphere that follows the sky.",
-      "tech": ["Next.js", "React", "Open-Meteo", "CSS"]
+      "tech": ["Next.js", "React", "Open-Meteo", "API"]
     },
     {
       "name": "Personal Portfolio Website",
       "type": "Frontend",
       "url": "https://frosty3316.github.io/portfolio-site",
       "description": "A responsive personal site for projects, skills, and background. Built so a recruiter can scan the work quickly without losing the details.",
-      "tech": ["HTML", "CSS", "JavaScript", "React"]
+      "tech": ["React", "Vite", "CSS"]
     }
   ],
   "stack": {
-    "Languages": ["HTML", "CSS", "JavaScript", "TypeScript", "Python"],
-    "Frontend": ["React", "Vite", "Next.js"],
-    "Backend": ["Node.js", "Express"],
+    "Languages": ["HTML", "CSS", "JavaScript", "TypeScript", "Python", "Dart"],
+    "Frontend": ["React", "Next.js", "Vite", "UI/UX", "TipTap", "dnd-kit", "Mantine UI", "Recharts"],
+    "Backend": ["Node.js", "Express.js", "REST APIs", "JWT", "Socket.IO", "WebSockets"],
+    "Data": ["PostgreSQL", "MySQL", "Prisma", "Hive", "Data Analysis"],
+    "Mobile": ["Flutter", "Dart", "Riverpod"],
     "AI": ["AI/ML basics", "Vercel AI SDK", "Groq"],
+    "Testing": ["Vitest", "Playwright"],
     "Forensics": [
       "Fingerprints",
       "Questioned documents",
       "Digital and cyber forensics",
       "Crime scene examination"
     ],
-    "Tools": ["Git", "Figma", "Adobe Creative Suite", "Microsoft Office"],
+    "Tools": ["Git", "GitHub", "Docker", "Netlify", "Vercel", "Render", "GitHub Pages", "Figma", "Postman", "Adobe Creative Suite", "Microsoft Office"],
     "Spoken languages": ["English", "Hindi", "Marathi", "Malayalam", "Japanese"]
   },
   "strengths": [

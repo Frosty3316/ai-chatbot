@@ -12,7 +12,7 @@ PORTFOLIO FACTS
 Name: Faustina Yarathingal
 Role: Full-Stack Developer & Forensic Scientist
 Location: Mumbai, Maharashtra, India
-Email: faustysalin@gmail.com
+Email: frostyarathingal@gmail.com
 Website: https://frosty3316.github.io/portfolio-site
 GitHub: https://github.com/Frosty3316
 
@@ -22,28 +22,31 @@ Education:
 
 Experience:
 - Forensic Science Intern, Clue4 Evidence (Dec 2025–Feb 2026) — fingerprints, questioned documents, digital/cyber forensics, crime scene examination, court and traffic-police visits
-- Content & Research Intern, CollegeTips.in (Jul–Aug 2024)
-- Student Ambassador, Internshala (Jun–Jul 2024)
+- Content & Research Intern, CollegeTips.in (Jul–Aug 2024) — content, research, documentation, remote collaboration
+- Student Ambassador, Internshala (Jun–Jul 2024) — student outreach and career-platform awareness
 
-Summary: Builds product UI, realtime systems, and AI-assisted tools. Forensic-science background shapes how she investigates problems.
+Summary: Designs, builds, and ships complete web and mobile applications — product UI, realtime systems, and AI-assisted tools. Forensic-science background shapes how she investigates problems.
 
 Interests: coding, editing, designing, sketching, gaming, reading, photography, AI, cybersecurity, digital forensics.
 
 Projects:
 - Dossier (this assistant, Full-Stack): React, TypeScript, Vite, Vercel Functions, AI SDK, Groq — https://dossier-pink.vercel.app
-- Mini Docs (Full-Stack): React, TypeScript, Node.js, Express, Socket.IO — realtime collaborative editor — https://harmonious-klepon-777dcc.netlify.app
-- FocusFlow Landing (Frontend): React, TypeScript, Vite — landing page with a working focus timer — https://frosty3316.github.io/focusflow-landing/
-- TaskNest (Frontend): React, TypeScript — local-first daily planner — https://tasknest-wheat.vercel.app
+- Inkroom (Full-Stack): React, Vite, TipTap, Node.js, Express, Socket.IO — shared writing room — https://inkroom-swart.vercel.app
+- FocusFlow (Frontend): React, TypeScript, Vite, Vitest — landing page with a working focus timer — https://frosty3316.github.io/focusflow-landing/
+- TaskNest (Frontend): React, TypeScript, Vite, Vitest — local-first daily planner — https://tasknest-wheat.vercel.app
 - Atmo (Full-Stack): Next.js, React, Open-Meteo — weather product with a server-only BFF — https://atmo-pink.vercel.app
-- Personal Portfolio Website (Frontend): HTML, CSS, JavaScript, React — https://frosty3316.github.io/portfolio-site
+- Personal Portfolio Website (Frontend): React, Vite, CSS — https://frosty3316.github.io/portfolio-site
 
 Stack (keep grouped):
-- Languages: HTML, CSS, JavaScript, TypeScript, Python
-- Frontend: React, Vite, Next.js
-- Backend: Node.js, Express
+- Languages: HTML, CSS, JavaScript, TypeScript, Python, Dart
+- Frontend: React, Next.js, Vite, UI/UX, TipTap, dnd-kit, Mantine UI, Recharts
+- Backend: Node.js, Express.js, REST APIs, JWT, Socket.IO, WebSockets
+- Data: PostgreSQL, MySQL, Prisma, Hive, Data Analysis
+- Mobile: Flutter, Dart, Riverpod
 - AI: AI/ML basics, Vercel AI SDK, Groq
+- Testing: Vitest, Playwright
 - Forensics: fingerprints, questioned documents, digital and cyber forensics, crime scene examination
-- Tools: Git, Figma, Adobe Creative Suite, Microsoft Office
+- Tools: Git, GitHub, Docker, Netlify, Vercel, Render, GitHub Pages, Figma, Postman, Adobe Creative Suite, Microsoft Office
 - Spoken languages: English, Hindi, Marathi, Malayalam, Japanese
 
 Strengths: attention to detail, readable code, user-centric UI, clear technical explanation, analytical forensic mindset.

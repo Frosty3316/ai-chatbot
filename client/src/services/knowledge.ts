@@ -62,6 +62,7 @@ function findProject(query: string) {
     const aliases = [name];
     if (name.includes("tasknest")) aliases.push("todo", "to do", "to-do", "task");
     if (name.includes("atmo")) aliases.push("weather");
+    if (name.includes("inkroom")) aliases.push("mini docs", "minidocs", "collaborative");
     if (name.includes("dossier")) aliases.push("chatbot", "assistant");
     if (name.includes("focusflow")) aliases.push("landing", "timer");
     return aliases.some((alias) => alias.length > 2 && q.includes(alias));
