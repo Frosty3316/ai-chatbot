@@ -12,6 +12,7 @@ function normalize(value: string): string {
 export function isPortfolioQuestion(query: string, lastSource?: RouteKind): boolean {
   const q = normalize(query);
   if (/faustina|frosty3316|yarathingal/.test(q)) return true;
+  if (/(contact|email|website|github|reach me|phone)/.test(q)) return true;
   if (
     /\b(her|she)\b/.test(q) &&
     /(skill|project|stack|work|background|role|github|portfolio|built|strength|educat|intern|language|contact|email)/.test(q)
@@ -19,7 +20,7 @@ export function isPortfolioQuestion(query: string, lastSource?: RouteKind): bool
     return true;
   }
   if (
-    /(who is she|about her|your (portfolio|projects|skills)|this (assistant|app|chatbot)|mini docs|focusflow|tasknest|atmo|dossier|weather app|to-?do app)/.test(
+    /(who is she|about her|your (portfolio|projects|skills)|this (assistant|app|chatbot)|inkroom|mini docs|focusflow|tasknest|atmo|dossier|weather app|to-?do app)/.test(
       q
     )
   ) {

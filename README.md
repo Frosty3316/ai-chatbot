@@ -1,6 +1,6 @@
 # Dossier
 
-A GPT-style portfolio assistant for [Faustina Yarathingal](https://frosty3316.github.io/portfolio-site). Questions about her work are answered from a structured source and are unlimited. General questions go through a hosted model, with no visitor sign-in and a daily cap.
+A GPT-style portfolio assistant for [Faustina Yarathingal](https://frosty3316.github.io/portfolio-site/). Questions about her work are answered from a structured source and are unlimited. General questions go through a hosted model, with no visitor sign-in and a daily cap.
 
 **Live:** [dossier-pink.vercel.app](https://dossier-pink.vercel.app)
 

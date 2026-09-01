@@ -4,7 +4,7 @@
   "role": "Full-Stack Developer & Forensic Scientist",
   "location": "Mumbai, Maharashtra, India",
   "email": "frostyarathingal@gmail.com",
-  "website": "https://frosty3316.github.io/portfolio-site",
+  "website": "https://frosty3316.github.io/portfolio-site/",
   "github": "https://github.com/Frosty3316",
   "summary": "Faustina Yarathingal is a full-stack developer and forensic-science student in Mumbai. She designs, builds, and ships complete web and mobile applications — product UI, realtime systems, and AI-assisted tools — and brings a forensic habit of checking evidence before drawing conclusions. She is studying B.Sc. (Hons.) Data Science and AI at IIT Guwahati and completed a diploma in Forensic Science and Criminal Law at St. Xavier's College.",
   "education": [
@@ -90,7 +90,7 @@
     {
       "name": "Personal Portfolio Website",
       "type": "Frontend",
-      "url": "https://frosty3316.github.io/portfolio-site",
+      "url": "https://frosty3316.github.io/portfolio-site/",
       "description": "A responsive personal site for projects, skills, and background. Built so a recruiter can scan the work quickly without losing the details.",
       "tech": ["React", "Vite", "CSS"]
     }

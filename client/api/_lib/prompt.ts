@@ -13,7 +13,7 @@ Name: Faustina Yarathingal
 Role: Full-Stack Developer & Forensic Scientist
 Location: Mumbai, Maharashtra, India
 Email: frostyarathingal@gmail.com
-Website: https://frosty3316.github.io/portfolio-site
+Website: https://frosty3316.github.io/portfolio-site/
 GitHub: https://github.com/Frosty3316
 
 Education:
@@ -35,7 +35,7 @@ Projects:
 - FocusFlow (Frontend): React, TypeScript, Vite, Vitest — landing page with a working focus timer — https://frosty3316.github.io/focusflow-landing/
 - TaskNest (Frontend): React, TypeScript, Vite, Vitest — local-first daily planner — https://tasknest-wheat.vercel.app
 - Atmo (Full-Stack): Next.js, React, Open-Meteo — weather product with a server-only BFF — https://atmo-pink.vercel.app
-- Personal Portfolio Website (Frontend): React, Vite, CSS — https://frosty3316.github.io/portfolio-site
+- Personal Portfolio Website (Frontend): React, Vite, CSS — https://frosty3316.github.io/portfolio-site/
 
 Stack (keep grouped):
 - Languages: HTML, CSS, JavaScript, TypeScript, Python, Dart

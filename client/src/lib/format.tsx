@@ -10,8 +10,17 @@ function safeHref(token: string): string | null {
   }
 }
 
+function markdownLink(token: string): { href: string; label: string } | null {
+  const match = token.match(/^\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)$/);
+  if (!match) return null;
+  const href = safeHref(match[2]);
+  if (!href) return null;
+  return { href, label: match[1] };
+}
+
 function inline(value: string): ReactNode[] {
-  const pattern = /(\*\*[^*]+\*\*|`[^`]+`|https?:\/\/[^\s<>"']+)/g;
+  const pattern =
+    /(\[[^\]]+\]\(https?:\/\/[^)\s]+\)|\*\*[^*]+\*\*|`[^`]+`|https?:\/\/[^\s<>"']+)/g;
   const nodes: ReactNode[] = [];
   let last = 0;
   let match: RegExpExecArray | null;
@@ -22,7 +31,14 @@ function inline(value: string): ReactNode[] {
       nodes.push(value.slice(last, match.index));
     }
     const token = match[0];
-    if (token.startsWith("**")) {
+    const link = markdownLink(token);
+    if (link) {
+      nodes.push(
+        <a key={key} href={link.href} target="_blank" rel="noreferrer">
+          {link.label}
+        </a>
+      );
+    } else if (token.startsWith("**")) {
       nodes.push(<strong key={key}>{token.slice(2, -2)}</strong>);
     } else if (token.startsWith("`")) {
       nodes.push(<code key={key}>{token.slice(1, -1)}</code>);
@@ -31,7 +47,7 @@ function inline(value: string): ReactNode[] {
       if (href) {
         nodes.push(
           <a key={key} href={href} target="_blank" rel="noreferrer">
-            {token.replace(/^https?:\/\//, "")}
+            {token}
           </a>
         );
       } else {
