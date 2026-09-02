@@ -32,7 +32,8 @@ export function isPortfolioQuestion(query: string, lastSource?: RouteKind): bool
 
 function formatProject(project: (typeof portfolio.projects)[number]): string {
   const url = "url" in project && project.url ? `\n${project.url}` : "";
-  return `**${project.name}** (${project.type})\n${project.description}\nTech: ${project.tech.join(", ")}${url}`;
+  const github = "github" in project && project.github ? `\nSource: ${project.github}` : "";
+  return `**${project.name}** (${project.type})\n${project.description}\nTech: ${project.tech.join(", ")}${url}${github}`;
 }
 
 function formatEducation(): string {

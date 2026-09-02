@@ -55,14 +55,16 @@
     {
       "name": "Dossier",
       "type": "Full-Stack",
-      "url": "https://dossier-pink.vercel.app",
+      "url": "https://dossier-pink.vercel.app/",
+      "github": "https://github.com/Frosty3316/ai-chatbot",
       "description": "This assistant. A GPT-style portfolio chatbot: unlimited answers about Faustina from a structured source, plus capped general questions through Groq. Chats persist in the browser. No visitor sign-in.",
       "tech": ["React", "TypeScript", "Vite", "Vercel Functions", "AI SDK", "Groq"]
     },
     {
       "name": "Inkroom",
       "type": "Full-Stack",
-      "url": "https://inkroom-swart.vercel.app",
+      "url": "https://inkroom-swart.vercel.app/",
+      "github": "https://github.com/Frosty3316/mini-docs",
       "description": "A shared writing room. Open a page, send the link, and someone can join live. Named pages, presence, find-in-page, and a light/dark theme over Socket.IO.",
       "tech": ["React", "Vite", "TipTap", "Node.js", "Express", "Socket.IO"]
     },
@@ -70,20 +72,23 @@
       "name": "FocusFlow",
       "type": "Frontend",
       "url": "https://frosty3316.github.io/focusflow-landing/",
+      "github": "https://github.com/Frosty3316/focusflow-landing",
       "description": "A product landing page with a working focus timer in the hero (25 / 15 / 5). Local-only persistence, typography-led layout, and a night-desk visual system.",
       "tech": ["React", "TypeScript", "Vite", "Vitest"]
     },
     {
       "name": "TaskNest",
       "type": "Frontend",
-      "url": "https://tasknest-wheat.vercel.app",
+      "url": "https://tasknest-wheat.vercel.app/",
+      "github": "https://github.com/Frosty3316/todo-app",
       "description": "A local-first daily planner. Today is the default view; inbox is capture, upcoming is dated work, archive is done. Built as a product, not a generic todo CRUD list.",
       "tech": ["React", "TypeScript", "Vite", "Vitest"]
     },
     {
       "name": "Atmo",
       "type": "Full-Stack",
-      "url": "https://atmo-pink.vercel.app",
+      "url": "https://atmo-pink.vercel.app/",
+      "github": "https://github.com/Frosty3316/weather-app",
       "description": "A weather product with a server-only BFF so the browser never talks to the weather provider. City search, geolocation, °C/°F, hourly and 7-day outlook, and an atmosphere that follows the sky.",
       "tech": ["Next.js", "React", "Open-Meteo", "API"]
     },
@@ -91,6 +96,7 @@
       "name": "Personal Portfolio Website",
       "type": "Frontend",
       "url": "https://frosty3316.github.io/portfolio-site/",
+      "github": "https://github.com/Frosty3316/portfolio-site",
       "description": "A responsive personal site for projects, skills, and background. Built so a recruiter can scan the work quickly without losing the details.",
       "tech": ["React", "Vite", "CSS"]
     }

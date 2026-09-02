@@ -30,12 +30,12 @@ Summary: Designs, builds, and ships complete web and mobile applications — pro
 Interests: coding, editing, designing, sketching, gaming, reading, photography, AI, cybersecurity, digital forensics.
 
 Projects:
-- Dossier (this assistant, Full-Stack): React, TypeScript, Vite, Vercel Functions, AI SDK, Groq — https://dossier-pink.vercel.app
-- Inkroom (Full-Stack): React, Vite, TipTap, Node.js, Express, Socket.IO — shared writing room — https://inkroom-swart.vercel.app
-- FocusFlow (Frontend): React, TypeScript, Vite, Vitest — landing page with a working focus timer — https://frosty3316.github.io/focusflow-landing/
-- TaskNest (Frontend): React, TypeScript, Vite, Vitest — local-first daily planner — https://tasknest-wheat.vercel.app
-- Atmo (Full-Stack): Next.js, React, Open-Meteo — weather product with a server-only BFF — https://atmo-pink.vercel.app
-- Personal Portfolio Website (Frontend): React, Vite, CSS — https://frosty3316.github.io/portfolio-site/
+- Dossier (this assistant, Full-Stack): React, TypeScript, Vite, Vercel Functions, AI SDK, Groq — https://dossier-pink.vercel.app/ — source https://github.com/Frosty3316/ai-chatbot
+- Inkroom (Full-Stack): React, Vite, TipTap, Node.js, Express, Socket.IO — shared writing room — https://inkroom-swart.vercel.app/ — source https://github.com/Frosty3316/mini-docs
+- FocusFlow (Frontend): React, TypeScript, Vite, Vitest — landing page with a working focus timer — https://frosty3316.github.io/focusflow-landing/ — source https://github.com/Frosty3316/focusflow-landing
+- TaskNest (Frontend): React, TypeScript, Vite, Vitest — local-first daily planner — https://tasknest-wheat.vercel.app/ — source https://github.com/Frosty3316/todo-app
+- Atmo (Full-Stack): Next.js, React, Open-Meteo — weather product with a server-only BFF — https://atmo-pink.vercel.app/ — source https://github.com/Frosty3316/weather-app
+- Personal Portfolio Website (Frontend): React, Vite, CSS — https://frosty3316.github.io/portfolio-site/ — source https://github.com/Frosty3316/portfolio-site
 
 Stack (keep grouped):
 - Languages: HTML, CSS, JavaScript, TypeScript, Python, Dart

@@ -88,7 +88,8 @@ function projectIndexFromFollowUp(query: string): number | undefined {
 
 function formatProject(project: PortfolioProject): string {
   const url = project.url ? `\n${project.url}` : "";
-  return `**${project.name}** (${project.type})\n${project.description}\nTech: ${project.tech.join(", ")}${url}`;
+  const github = project.github ? `\nSource: ${project.github}` : "";
+  return `**${project.name}** (${project.type})\n${project.description}\nTech: ${project.tech.join(", ")}${url}${github}`;
 }
 
 function formatProjects(): string {

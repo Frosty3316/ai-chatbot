@@ -11,6 +11,7 @@ export type PortfolioProject = {
   description: string;
   tech: string[];
   url?: string;
+  github?: string;
 };
 
 export type EducationItem = {
