@@ -234,9 +234,13 @@ function replyForIntent(intent: KnowledgeIntent, query: string): KnowledgeResult
         intent,
         topic: "contact",
         reply: [
-          `GitHub: ${portfolio.github}`,
-          portfolio.website ? `Portfolio: ${portfolio.website}` : "",
-          portfolio.email ? `Email: ${portfolio.email}` : "",
+          "**Contact**",
+          "",
+          portfolio.email ? `• Email: [${portfolio.email}](mailto:${portfolio.email})` : "",
+          portfolio.website
+            ? `• Website: [${portfolio.website.replace(/^https?:\/\//, "").replace(/\/$/, "")}](${portfolio.website})`
+            : "",
+          `• GitHub: [${portfolio.github.replace(/^https?:\/\//, "")}](${portfolio.github})`,
         ]
           .filter(Boolean)
           .join("\n"),

@@ -1,5 +1,6 @@
 import { groq } from "@ai-sdk/groq";
 import { generateText } from "ai";
+import { answerFromPortfolio, isPortfolioQuestion } from "./_lib/knowledge.js";
 import { SYSTEM_PROMPT } from "./_lib/prompt.js";
 
 export const runtime = "nodejs";
@@ -153,15 +154,6 @@ function userFriendly(error: unknown): string {
 }
 
 export async function POST(req: Request) {
-  if (!process.env.GROQ_API_KEY) {
-    return Response.json(
-      {
-        error: "Ask-anything is not configured. Portfolio questions stay unlimited.",
-      },
-      { status: 503 }
-    );
-  }
-
   let body: {
     message?: string;
     history?: { role: string; content: string }[];
@@ -182,12 +174,24 @@ export async function POST(req: Request) {
     return Response.json({ error: "Message is too long." }, { status: 400 });
   }
 
+  const portfolioTurn = attachments.length === 0 && isPortfolioQuestion(message);
   const id = clientId(req);
-  const slot = checkSlot(id);
-  if (slot.ok === false) {
-    return Response.json({ error: slot.error }, { status: slot.status });
+
+  if (!portfolioTurn) {
+    if (!process.env.GROQ_API_KEY) {
+      return Response.json(
+        {
+          error: "Ask-anything is not configured. Portfolio questions stay unlimited.",
+        },
+        { status: 503 }
+      );
+    }
+    const slot = checkSlot(id);
+    if (slot.ok === false) {
+      return Response.json({ error: slot.error }, { status: slot.status });
+    }
+    consumeSlot(id);
   }
-  consumeSlot(id);
 
   const history = sanitizeHistory(body.history);
   const prompt =
@@ -201,6 +205,16 @@ export async function POST(req: Request) {
       const send = (payload: Record<string, unknown>) => {
         controller.enqueue(encoder.encode(`data: ${JSON.stringify(payload)}\n\n`));
       };
+
+      if (portfolioTurn) {
+        send({ mode: "portfolio" });
+        const text = answerFromPortfolio(message);
+        const pieces = text.match(/(\s+|\S+)/g) ?? [text];
+        for (const piece of pieces) send({ delta: piece });
+        send({ done: true });
+        controller.close();
+        return;
+      }
 
       send({ mode: "llm" });
 

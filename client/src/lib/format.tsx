@@ -3,24 +3,64 @@ import type { ReactNode } from "react";
 function safeHref(token: string): string | null {
   try {
     const url = new URL(token);
-    if (url.protocol !== "http:" && url.protocol !== "https:") return null;
+    if (url.protocol !== "http:" && url.protocol !== "https:" && url.protocol !== "mailto:") {
+      return null;
+    }
     return url.href;
   } catch {
     return null;
   }
 }
 
+function toHref(raw: string): string | null {
+  const token = raw.trim();
+  if (!token) return null;
+  if (/^mailto:/i.test(token) || /^https?:\/\//i.test(token)) return safeHref(token);
+  if (/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(token)) return `mailto:${token}`;
+  if (/^(www\.)?[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+([/:?#][^\s]*)?$/i.test(token)) {
+    return safeHref(`https://${token}`);
+  }
+  return null;
+}
+
+function prettyLabel(href: string, fallback: string): string {
+  try {
+    const url = new URL(href);
+    if (url.protocol === "mailto:") return url.pathname;
+    const path = url.pathname === "/" ? "" : url.pathname.replace(/\/$/, "");
+    return `${url.host}${path}` || fallback;
+  } catch {
+    return fallback.replace(/^https?:\/\//i, "").replace(/\/$/, "");
+  }
+}
+
 function markdownLink(token: string): { href: string; label: string } | null {
-  const match = token.match(/^\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)$/);
+  const match = token.match(/^\[([^\]]+)\]\(([^)\s]+)\)$/);
   if (!match) return null;
-  const href = safeHref(match[2]);
+  const href = toHref(match[2]);
   if (!href) return null;
   return { href, label: match[1] };
 }
 
+function angleLink(token: string): { href: string; label: string } | null {
+  const match = token.match(/^<([^<>]+)>$/);
+  if (!match) return null;
+  const href = toHref(match[1]);
+  if (!href) return null;
+  return { href, label: prettyLabel(href, match[1]) };
+}
+
+function linkNode(key: number, href: string, label: string): ReactNode {
+  return (
+    <a key={key} href={href} target="_blank" rel="noreferrer">
+      {label}
+    </a>
+  );
+}
+
 function inline(value: string): ReactNode[] {
   const pattern =
-    /(\[[^\]]+\]\(https?:\/\/[^)\s]+\)|\*\*[^*]+\*\*|`[^`]+`|https?:\/\/[^\s<>"']+)/g;
+    /(\[[^\]]+\]\([^)\s]+\)|<[^<>\s]+>|\*\*[^*]+\*\*|`[^`]+`|https?:\/\/[^\s<>"']+|\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b)/g;
   const nodes: ReactNode[] = [];
   let last = 0;
   let match: RegExpExecArray | null;
@@ -31,25 +71,20 @@ function inline(value: string): ReactNode[] {
       nodes.push(value.slice(last, match.index));
     }
     const token = match[0];
-    const link = markdownLink(token);
-    if (link) {
-      nodes.push(
-        <a key={key} href={link.href} target="_blank" rel="noreferrer">
-          {link.label}
-        </a>
-      );
+    const md = markdownLink(token);
+    const angled = angleLink(token);
+    if (md) {
+      nodes.push(linkNode(key, md.href, md.label));
+    } else if (angled) {
+      nodes.push(linkNode(key, angled.href, angled.label));
     } else if (token.startsWith("**")) {
       nodes.push(<strong key={key}>{token.slice(2, -2)}</strong>);
     } else if (token.startsWith("`")) {
       nodes.push(<code key={key}>{token.slice(1, -1)}</code>);
     } else {
-      const href = safeHref(token);
+      const href = toHref(token);
       if (href) {
-        nodes.push(
-          <a key={key} href={href} target="_blank" rel="noreferrer">
-            {token}
-          </a>
-        );
+        nodes.push(linkNode(key, href, prettyLabel(href, token)));
       } else {
         nodes.push(token);
       }
@@ -76,6 +111,10 @@ function renderBlock(block: string, index: number): ReactNode {
 
   const lines = block.split("\n").filter((line) => line.length > 0);
   if (lines.length === 0) return null;
+
+  if (lines.length === 1 && /^\*\*[^*]+\*\*$/.test(lines[0])) {
+    return <h4 key={index}>{lines[0].slice(2, -2)}</h4>;
+  }
 
   const list = lines.every((line) => /^[-•]\s/.test(line.trim()));
   const numbered = lines.every((line) => /^\d+\.\s/.test(line.trim()));

@@ -478,6 +478,17 @@
   border-color: rgba(201, 163, 106, 0.28);
 }
 
+.message-body a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+}
+
+.message-body a:hover {
+  color: var(--text);
+}
+
 .message-body p,
 .message-body ul,
 .message-body ol {
